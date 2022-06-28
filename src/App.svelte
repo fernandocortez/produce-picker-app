@@ -56,9 +56,16 @@
     .filter(([, value]) => value.length > 0)
     .map(([product, value]) => `${value} ${product}`)
     .join("\n");
+
+  function copyOutputToClipboard() {
+    navigator.clipboard.writeText(output);
+  }
 </script>
 
 <style>
+  .products {
+    margin-bottom: 1rem;
+  }
   .product-container {
     padding: 0.25rem;
     display: grid;
@@ -67,6 +74,10 @@
   }
   .product-container:nth-child(odd) {
     background-color: lightgray;
+  }
+  .copy-output-btn {
+    width: 100%;
+    font-size: 1.5em;
   }
   .output {
     padding: 0.5rem;
@@ -84,5 +95,6 @@
   {/each}
   </article>
 
+  <button class="copy-output-btn" on:click={copyOutputToClipboard}>Copiar</button>
   <pre class="output">{output}</pre>
 </main>
